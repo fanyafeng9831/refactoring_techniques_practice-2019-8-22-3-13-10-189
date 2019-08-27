@@ -1,11 +1,13 @@
 package com.tws.refactoring.extract_variable;
 
 public class BannerRender {
-    String renderBanner(String platform, String browser) {
-        if ((platform.toUpperCase().indexOf("MAC") > -1) &&
-                (browser.toUpperCase().indexOf("IE") > -1)) {
+    public String renderBanner(String platform, String browser) {
+    	int platformIndexOf =platform.toUpperCase().indexOf("MAC"); 
+    	int browserIndexOf = browser.toUpperCase().indexOf("IE");
+        if (platformIndexOf> -1 &&( browserIndexOf > -1)) {
             return "IE on Mac?";
-        }
+        }else {
         return "banner";
+        }
     }
 }

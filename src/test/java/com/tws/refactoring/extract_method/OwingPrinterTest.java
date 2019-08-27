@@ -24,8 +24,20 @@ public class OwingPrinterTest {
     }
 
     @Test
-    public void printOwing() {
-//        System.out.print("hello");
-//        assertEquals("hello", outContent.toString());
+    public void should_print_total_amount_when_print_price_given_name_cao_and_orders() {
+     //given
+     double[] amounts = {60.0, 6.0};
+     String name = "cao";
+     Orders orders = new Orders(amounts);
+     OwingPrinter owingPrinter = new OwingPrinter();
+     //when
+     owingPrinter.printOwing(name, orders);
+     String expect = "*****************************\r\n" + 
+          "****** Customer totals ******\r\n" + 
+          "*****************************\r\n" +
+          "name: cao\r\n" + 
+          "amount: 66.0\r\n";
+     //then
+     assertEquals(expect, outContent.toString());
     }
 }

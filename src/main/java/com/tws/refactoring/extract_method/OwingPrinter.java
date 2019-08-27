@@ -5,36 +5,37 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
+import org.junit.internal.runners.model.EachTestNotifier;
+
 public class OwingPrinter {
-    void printOwing(String name, List<Order> orders) {
-        Iterator<Order> elements = orders.iterator();
-        double outstanding = 0.0;
+    public void printOwing(String name, Orders orders) {
+        double totalAmount = orders.getTotalAmount();;
 
         // print banner
-        System.out.println ("*****************************");
-        System.out.println ("****** Customer totals ******");
-        System.out.println ("*****************************");
-
-        // print owings
-        while (elements.hasNext()) {
-            Order each = (Order) elements.next();
-            outstanding += each.getAmount();
-        }
-
+        System.out.println ("*****************************\r\n" + 
+          "****** Customer totals ******\r\n" + 
+          "*****************************");
+        
         // print details
-        System.out.println("name: " + name);
-        System.out.println("amount: " + outstanding);
+        System.out.println("name: " + name + "\r\n" + "amount: " + totalAmount);
     }
 }
 
-class Order {
-    private final double amount;
+class Orders {
+    private final double[] amounts;
 
-    public Order(double amount) {
-        this.amount = amount;
+    public Orders(double[] amounts) {
+        this.amounts = amounts;
     }
 
-    public double getAmount() {
-        return amount;
+    public double[] getAmount() {
+        return amounts;
+    }
+    public double getTotalAmount() {
+     double totalAmount = 0;
+     for (int i = 0 ;i < amounts.length; i++) {
+      totalAmount += amounts[i];
+     }
+     return totalAmount;
     }
 }
